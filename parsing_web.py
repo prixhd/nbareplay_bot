@@ -4,8 +4,6 @@ import lxml
 import json
 
 
-
-
 url = "https://nbareplay.net/category/watch-nba-replay/"
 
 count_games_file = open('number_game.txt', 'r')
