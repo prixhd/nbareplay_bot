@@ -20,10 +20,10 @@ def take_first_match(urls, last_game):
 
     req = requests.get(urls, headers)
 
-    with open("data/projects.html", "w") as file:
+    with open("projects.html", "w") as file:
         file.write(req.text)
 
-    with open("data/projects.html") as file:
+    with open("projects.html") as file:
         site = file.read()
 
     soup = bs(site, "lxml")
@@ -43,10 +43,10 @@ def take_last_match(urls):
 
     req = requests.get(urls, headers)
 
-    with open("data/projects.html", "w") as file:
+    with open("projects.html", "w") as file:
         file.write(req.text)
 
-    with open("data/projects.html") as file:
+    with open("projects.html") as file:
         site = file.read()
 
     soup = bs(site, "lxml")
@@ -67,10 +67,10 @@ def get_video(urls, count_game):
 
     req = requests.get(urls, headers)
 
-    with open("data/projects.html", "w") as file:
+    with open("projects.html", "w") as file:
         file.write(req.text)
 
-    with open("data/projects.html") as file:
+    with open("projects.html") as file:
         site = file.read()
 
     soup = bs(site, "lxml")
@@ -88,10 +88,10 @@ def get_video(urls, count_game):
 
         req = requests.get(match_link, header)
 
-        with open("data/projects_2.html", "w") as file:
+        with open("projects_2.html", "w") as file:
             file.write(req.text)
 
-        with open("data/projects_2.html") as file:
+        with open("projects_2.html") as file:
             site_2 = file.read()
 
         soup_2 = bs(site_2, "lxml")
@@ -112,10 +112,10 @@ def get_video(urls, count_game):
 
                 req = requests.get(i, headers_1)
 
-                with open("data/projects_3.html", "w") as file:
+                with open("projects_3.html", "w") as file:
                     file.write(req.text)
 
-                with open("data/projects_3.html") as file:
+                with open("projects_3.html") as file:
                     sites = file.read()
 
                 soups = bs(sites, "lxml")
@@ -138,7 +138,7 @@ def get_video(urls, count_game):
             "fourth_quarter": links[3]
         }
 
-        with open("matchs_dict.json", "w") as file:
+        with open("../matchs_dict.json", "w") as file:
             json.dump(matchs_dict, file, indent=4, ensure_ascii=False)
 
     except Exception:
