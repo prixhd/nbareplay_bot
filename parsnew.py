@@ -95,4 +95,6 @@ def get_links(urls):
         print('0')
 
 
-get_links(url)
+if __name__ == "__main__":
+    get_links(url)
+
