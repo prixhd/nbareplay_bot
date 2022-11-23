@@ -40,7 +40,7 @@ async def matchs_today(message: types.Message):
 
 @dp.message_handler()
 async def match_answer(message: types.Message):
-    builder = InlineKeyboardMarkup()
+    builder = InlineKeyboardMarkup(row_width=4)
 
     for i in range(1, 5):
         try:
