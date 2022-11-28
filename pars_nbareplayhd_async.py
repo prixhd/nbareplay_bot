@@ -4,11 +4,10 @@ from datetime import datetime
 from tqdm import tqdm
 
 matchs_dict = {}
-print(datetime.now())
 
 
 async def get_video(session, match):
-    print('Идет обработка...')
+    print('Матч обрабатывется')
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 \
              (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
@@ -60,7 +59,7 @@ async def get_video(session, match):
                         response_text = await response.text()
 
                         soups = bs(response_text, "lxml")
-                        if soups.find('div', class_='entry-content').find('p').text == 'Uploading...':
+                        if soups.find('div', class_='entry-content').find('p').text == 'Uploading…':
                             continue
                         else:
                             link = 'https:' + soups.find('div', class_='entry-content').find('iframe').get('src')
@@ -77,7 +76,10 @@ async def get_video(session, match):
         except Exception:
             print('0')
 
-    print(f'Матч обработан!')
+        with open("data/matchs_dict.json", "w") as file:
+            json.dump(matchs_dict, file, indent=4, ensure_ascii=False)
+
+        print('Матч занесен в базу')
 
 
 async def get_matchs():
@@ -104,6 +106,7 @@ async def get_matchs():
                 f'{current_day} {current_month_text} {current_year}'))
         except Exception:
             print('0')
+
         tasks = []
 
         for matchs in matchs_today:
@@ -113,12 +116,10 @@ async def get_matchs():
         await asyncio.gather(*tasks)
 
 
-def main():
+def mains():
+
     asyncio.run(get_matchs())
-    with open("matchs_dict.json", "w") as file:
-        json.dump(matchs_dict, file, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    main()
-    print(datetime.now())
+    mains()
